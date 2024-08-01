@@ -1,7 +1,10 @@
+from selenium.webdriver.common.by import By
+
+
 class BasePage:
     def __init__(self, driver):
         self.driver = driver
-        self.base_url = "https://bashadventure.ru/activities/gory/"
+        self.base_url = "https://берг-инжиниринг.рф/"
         self.cookies_message = ("//div[contains(@class, 'marketing-popup')]"
                                 "//span[contains(text(), 'Принимаю')]")
 
