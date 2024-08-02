@@ -1,4 +1,9 @@
 import time
+
+from selenium.webdriver.support.wait import WebDriverWait
+from selenium.webdriver.support import expected_conditions as EC
+
+from korpusnye_podshipniki_page import KorpusnyePodshipnikiPage
 from main_page import MainPage
 from podshipniki_page import PodshipnikiPage
 from products_page import ProductsPage
@@ -33,3 +38,22 @@ def test_podshiphiki_paga(browser):
     page.hover_catalog()
     page.click_podshipniki()
     assert page.get_current_url() == 'https://xn----9sbgbhinbaa5ccc6ai.xn--p1ai/product/podshipniki/'
+
+def test_korpusnye_podshiphiki_paga(browser):
+    page = KorpusnyePodshipnikiPage(browser)
+    page.open_site()
+    time.sleep(3)
+    page.hover_catalog()
+    page.click_korpusnye_podshipniki()
+    assert page.get_current_url() == 'https://xn----9sbgbhinbaa5ccc6ai.xn--p1ai/product/podshipniki/korpusnye-podshipniki/'
+
+def test_korpusnye_podshiphiki_paga_sort(browser):
+    page = KorpusnyePodshipnikiPage(browser)
+    page.open_site()
+    time.sleep(3)
+    page.hover_catalog()
+    page.click_korpusnye_podshipniki()
+    assert page.get_current_url() == 'https://xn----9sbgbhinbaa5ccc6ai.xn--p1ai/product/podshipniki/korpusnye-podshipniki/'
+    page.click_sort_alphabet_asc()
+    time.sleep(3)
+    page.check_items_in_ascending_order()
