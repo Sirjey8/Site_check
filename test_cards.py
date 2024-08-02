@@ -1,5 +1,6 @@
 import time
 from main_page import MainPage
+from podshipniki_page import PodshipnikiPage
 from products_page import ProductsPage
 
 
@@ -24,3 +25,11 @@ def test_products_page_ina_fag_load(browser):
     time.sleep(1)
     page.go_to_products_ina_fag()
     page.check_iframe()
+
+def test_podshiphiki_paga(browser):
+    page = PodshipnikiPage(browser)
+    page.open_site()
+    time.sleep(3)
+    page.hover_catalog()
+    page.click_podshipniki()
+    assert page.get_current_url() == 'https://xn----9sbgbhinbaa5ccc6ai.xn--p1ai/product/podshipniki/'
