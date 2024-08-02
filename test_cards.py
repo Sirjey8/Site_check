@@ -23,5 +23,4 @@ def test_products_page_ina_fag_load(browser):
     page.open_site()
     time.sleep(1)
     page.go_to_products_ina_fag()
-    time.sleep(3)
-    assert page.get_current_url() == "https://xn----9sbgbhinbaa5ccc6ai.xn--p1ai/catalog-ina-fag/"
+    page.check_iframe()
