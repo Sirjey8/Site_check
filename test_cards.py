@@ -57,3 +57,7 @@ def test_korpusnye_podshiphiki_paga_sort(browser):
     page.click_sort_alphabet_asc()
     time.sleep(3)
     page.check_items_in_ascending_order()
+    time.sleep(3)
+    page.click_sort_alphabet_desc()
+    time.sleep(3)
+    page.check_items_in_desc_order()
