@@ -127,8 +127,8 @@ class KorpusnyePodshipnikiPage(BasePage):
         time.sleep(3)
         for element in smartfilter.find_elements(By.CLASS_NAME, 'bx_filter_parameters_box_title'):
             element.click()
-            time.sleep(2)
-        time.sleep(3)
+            time.sleep(1)
+        time.sleep(1)
         checkbox = smartfilter.find_element(By.CSS_SELECTOR, 'label[for="arrFilter_379_2324464151"]')
         checkbox.click()
         smartfilter.find_element(By.ID, 'arrFilter_450_MIN').send_keys('105')
@@ -140,6 +140,16 @@ class KorpusnyePodshipnikiPage(BasePage):
         time.sleep(3)
         elements = self.driver.find_elements(By.CLASS_NAME, 'img-responsive')
         assert len(elements) == 3
+
+    def test_sidebar_filter_reset(self):
+        self.test_sidebar_filter()
+        del_filter = self.driver.find_element(By.ID, 'del_filter')
+        y_position = del_filter.location['y'] -100
+        self.driver.execute_script(f"window.scrollTo(0, {y_position})")
+        time.sleep(3)
+        del_filter.click()
+        time.sleep(3)
+        assert '/product/podshipniki/korpusnye-podshipniki/filter/clear/apply/' in self.get_current_url()
 
 
 

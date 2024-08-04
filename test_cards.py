@@ -118,3 +118,7 @@ def test_sidebar_filter(browser):
     page = KorpusnyePodshipnikiPage(browser)
     page.test_sidebar_filter()
 
+def test_sidebar_filter_reset(browser):
+    page = KorpusnyePodshipnikiPage(browser)
+    page.test_sidebar_filter_reset()
+
