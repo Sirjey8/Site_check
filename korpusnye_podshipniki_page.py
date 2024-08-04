@@ -94,8 +94,52 @@ class KorpusnyePodshipnikiPage(BasePage):
         assert self.driver.find_element(By.CLASS_NAME, "close-block").is_displayed()
         assert self.driver.find_element(By.CLASS_NAME, "btn-search").is_displayed()
 
+    def test_search_closure(self):
+        self.driver.get('https://берг-инжиниринг.рф/product/podshipniki/korpusnye-podshipniki/')
+        time.sleep(3)
+        self.driver.find_element(By.CLASS_NAME, "inline-search-show").click()
+        time.sleep(1)
+        self.driver.find_element(By.CLASS_NAME, "close-block").click()
+        time.sleep(1)
+        assert not self.driver.find_element(By.ID, "title-search").is_displayed()
+        assert not self.driver.find_element(By.CLASS_NAME, "close-block").is_displayed()
+        assert not self.driver.find_element(By.CLASS_NAME, "btn-search").is_displayed()
 
+    def test_search_work(self):
+        self.driver.get('https://берг-инжиниринг.рф/product/podshipniki/korpusnye-podshipniki/')
+        time.sleep(3)
+        self.driver.find_element(By.CLASS_NAME, "inline-search-show").click()
+        time.sleep(1)
+        self.driver.find_element(By.ID, "title-search-input").send_keys('berg20709')
+        self.driver.find_element(By.CLASS_NAME, "btn-search").click()
+        time.sleep(3)
+        assert 'berg20709' in self.driver.find_element(By.CLASS_NAME, "text").text
+        elements = self.driver.find_elements(By.CSS_SELECTOR, '.search-page > a')
+        assert len(elements) == 1
+        assert '/product/podshipniki/korpusnye-podshipniki/35887' in elements[0].get_attribute('href')
 
+    def test_sidebar_filter(self):
+        self.driver.get('https://берг-инжиниринг.рф/product/podshipniki/korpusnye-podshipniki/')
+        time.sleep(3)
+        smartfilter = self.driver.find_element(By.CLASS_NAME, "smartfilter")
+        y_position = smartfilter.location['y']-50
+        self.driver.execute_script(f"window.scrollTo(0, {y_position})")
+        time.sleep(3)
+        for element in smartfilter.find_elements(By.CLASS_NAME, 'bx_filter_parameters_box_title'):
+            element.click()
+            time.sleep(2)
+        time.sleep(3)
+        checkbox = smartfilter.find_element(By.CSS_SELECTOR, 'label[for="arrFilter_379_2324464151"]')
+        checkbox.click()
+        smartfilter.find_element(By.ID, 'arrFilter_450_MIN').send_keys('105')
+        smartfilter.find_element(By.ID, 'arrFilter_450_MAX').send_keys('110')
+        smartfilter.find_element(By.ID, 'arrFilter_454_MIN').send_keys('1')
+        smartfilter.find_element(By.ID, 'arrFilter_454_MAX').send_keys('2')
+        time.sleep(3)
+        smartfilter.find_element(By.ID, 'set_filter').click()
+        time.sleep(3)
+        elements = self.driver.find_elements(By.CLASS_NAME, 'img-responsive')
+        assert len(elements) == 3
 
 
 

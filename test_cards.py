@@ -105,3 +105,16 @@ def test_up_butten_functionality(browser):
 def test_search_visibility(browser):
     page = KorpusnyePodshipnikiPage(browser)
     page.test_search_visibility()
+
+def test_search_closure(browser):
+    page = KorpusnyePodshipnikiPage(browser)
+    page.test_search_closure()
+
+def test_search_work(browser):
+    page = KorpusnyePodshipnikiPage(browser)
+    page.test_search_work()
+
+def test_sidebar_filter(browser):
+    page = KorpusnyePodshipnikiPage(browser)
+    page.test_sidebar_filter()
+
