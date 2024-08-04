@@ -93,3 +93,15 @@ def test_tiled_page_display(browser):
     page = PodshipnikiSkolgeniyaPage(browser)
     page.open_site()
     page.test_tiled_page_display()
+
+def test_up_butten_visibility(browser):
+    page = KorpusnyePodshipnikiPage(browser)
+    page.test_up_butten_visibility()
+
+def test_up_butten_functionality(browser):
+    page = KorpusnyePodshipnikiPage(browser)
+    page.test_up_butten_functionality()
+
+def test_search_visibility(browser):
+    page = KorpusnyePodshipnikiPage(browser)
+    page.test_search_visibility()

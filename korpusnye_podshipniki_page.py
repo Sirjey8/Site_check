@@ -72,6 +72,35 @@ class KorpusnyePodshipnikiPage(BasePage):
         titles_element.click()
         time.sleep(3)
         assert self.get_current_url() == href
+    def test_up_butten_visibility(self):
+        self.driver.get('https://берг-инжиниринг.рф/product/podshipniki/korpusnye-podshipniki/')
+        time.sleep(3)
+        up_butten = self.driver.find_element(By.CLASS_NAME, 'scroll-to-top')
+        self.driver.execute_script(f"window.scrollTo(0, 500)")
+        assert up_butten.is_displayed()
+
+    def test_up_butten_functionality(self):
+        self.test_up_butten_visibility()
+        self.driver.find_element(By.CLASS_NAME, 'scroll-to-top').click()
+        time.sleep(1)
+        assert self.driver.find_element(By.CLASS_NAME, 'logo').is_displayed()
+
+    def test_search_visibility(self):
+        self.driver.get('https://берг-инжиниринг.рф/product/podshipniki/korpusnye-podshipniki/')
+        time.sleep(3)
+        self.driver.find_element(By.CLASS_NAME, "inline-search-show").click()
+        time.sleep(1)
+        assert self.driver.find_element(By.ID, "title-search").is_displayed()
+        assert self.driver.find_element(By.CLASS_NAME, "close-block").is_displayed()
+        assert self.driver.find_element(By.CLASS_NAME, "btn-search").is_displayed()
+
+
+
+
+
+
+
+
 
 
 
