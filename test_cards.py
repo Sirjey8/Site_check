@@ -88,3 +88,8 @@ def test_images_page_podshipniki_skolgeniya(browser):
     page.open_site()
     page.test_images_page_podshipniki_skolgeniya()
     page.test_hover_cards()
+
+def test_tiled_page_display(browser):
+    page = PodshipnikiSkolgeniyaPage(browser)
+    page.open_site()
+    page.test_tiled_page_display()

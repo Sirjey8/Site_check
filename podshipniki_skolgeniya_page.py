@@ -30,4 +30,25 @@ class PodshipnikiSkolgeniyaPage(BasePage):
         time.sleep(3)
         assert first_card.find_element(By.CLASS_NAME, 'btn').is_displayed()
 
+    def test_tiled_page_display(self):
+        ajax_load = self.driver.find_element(By.CLASS_NAME, 'ajax_load')
+        assert 'table' in ajax_load.get_attribute('class')
+        view_list = self.driver.find_element(By.CLASS_NAME, 'view-list')
+        y = view_list.location['y']
+        self.driver.execute_script(f'window.scrollTo(0, {y})')
+        view_list.click()
+        time.sleep(3)
+        ajax_load = self.driver.find_element(By.CLASS_NAME, 'ajax_load')
+        assert 'list' in ajax_load.get_attribute('class')
+
+        view_price = self.driver.find_element(By.CLASS_NAME, 'view-price')
+        y = view_price.location['y']
+        self.driver.execute_script(f'window.scrollTo(0, {y})')
+        view_price.click()
+        time.sleep(3)
+        ajax_load = self.driver.find_element(By.CLASS_NAME, 'ajax_load')
+        assert 'price' in ajax_load.get_attribute('class')
+
+
+
 
