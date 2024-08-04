@@ -7,6 +7,7 @@ from korpusnye_podshipniki_card import KorpusnyePodshipnikiCard
 from korpusnye_podshipniki_page import KorpusnyePodshipnikiPage
 from main_page import MainPage
 from podshipniki_page import PodshipnikiPage
+from podshipniki_skolgeniya_page import PodshipnikiSkolgeniyaPage
 from products_page import ProductsPage
 
 
@@ -83,5 +84,7 @@ def test_back_url(browser):
     page.click_back_url()
 
 def test_images_page_podshipniki_skolgeniya(browser):
-    #  https://берг-инжиниринг.рф/product/podshipniki/podshipniki-skolzheniya/
-    pass
+    page = PodshipnikiSkolgeniyaPage(browser)
+    page.open_site()
+    page.test_images_page_podshipniki_skolgeniya()
+    page.test_hover_cards()
