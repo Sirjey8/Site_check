@@ -46,7 +46,6 @@ class KorpusnyePodshipnikiPage(BasePage):
         titles = []
         for title_el in titles_elements:
             text = re.sub(r'[^а-я]', '', title_el.text, flags=re.IGNORECASE)
-            print(text)
             titles.append(text)
         assert self.is_ascending(titles)
     def check_items_in_desc_order(self):
@@ -56,7 +55,6 @@ class KorpusnyePodshipnikiPage(BasePage):
         titles = []
         for title_el in titles_elements:
             text = re.sub(r'[^а-я]', '', title_el.text, flags=re.IGNORECASE)
-            print(text)
             titles.append(text)
         assert not self.is_ascending(titles)
 
@@ -65,5 +63,16 @@ class KorpusnyePodshipnikiPage(BasePage):
             if titles[i] > titles[i + 1]:
                 return False
         return True
+
+    def test_open_first_card(self):
+        titles_element = self.driver.find_element(By.XPATH, "//div[@class='title']//a[@class='dark-color']")
+        y_position = titles_element.location['y']
+        self.driver.execute_script(f"window.scrollTo(0, {y_position})")
+        href = titles_element.get_attribute('href')
+        titles_element.click()
+        time.sleep(3)
+        assert self.get_current_url() == href
+
+
 
 
