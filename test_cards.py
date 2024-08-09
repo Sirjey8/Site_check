@@ -12,7 +12,7 @@ from products_page import ProductsPage
 
 # тестирование загрузки главной страницы
 def test_main_page_load(browser):
-    main_page = MainPage(browser, "MainPage")
+    main_page = MainPage(browser)
     main_page.open_site()
     time.sleep(3)
     assert main_page.get_current_url() == "https://xn----9sbgbhinbaa5ccc6ai.xn--p1ai/"
