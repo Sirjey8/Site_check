@@ -18,6 +18,7 @@ def test_main_page_load(browser):
     assert main_page.get_current_url() == "https://xn----9sbgbhinbaa5ccc6ai.xn--p1ai/"
 
 
+
 def test_products_page_load(browser):
     page = ProductsPage(browser)
     page.open_site()
@@ -62,7 +63,6 @@ def test_korpusnye_podshiphiki_paga_sort(browser):
     time.sleep(3)
     page.click_sort_alphabet_desc()
     time.sleep(3)
-    # todo: не могу проверить - не понятно как загрузить все страницы
     page.check_items_in_desc_order()
 
 def test_open_item_card(browser):
