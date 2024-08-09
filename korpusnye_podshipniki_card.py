@@ -10,10 +10,11 @@ from selenium.webdriver.support.wait import WebDriverWait
 from base_page import BasePage
 from korpusnye_podshipniki_page import KorpusnyePodshipnikiPage
 
-
+# Тестирование карточек на странице "Корпусные подшипники"
 class KorpusnyePodshipnikiCard(KorpusnyePodshipnikiPage):
     def __init__(self, driver: WebDriver):
         super().__init__(driver)
+    # Открытие первой карточке на странице "Корпусные подшипники"
     def open_first_card(self):
         titles_element = self.driver.find_element(By.XPATH, "//div[@class='title']//a[@class='dark-color']")
         y_position = titles_element.location['y']
@@ -21,6 +22,7 @@ class KorpusnyePodshipnikiCard(KorpusnyePodshipnikiPage):
         titles_element.click()
         time.sleep(3)
 
+    # Тестирование работы кнопки "назад к списку"
     def click_back_url(self):
         back_url = self.driver.find_element(By.CLASS_NAME, 'back-url')
         y = back_url.location['y']

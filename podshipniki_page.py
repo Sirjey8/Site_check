@@ -8,16 +8,18 @@ from selenium.webdriver.support import expected_conditions as EC
 
 from base_page import BasePage
 
+# Тестирование страницы "Подшипники"
 class PodshipnikiPage(BasePage):
     def __init__(self, driver):
         super().__init__(driver)
-
+    # наведение курсора на подпункт меню "каталог"
     def hover_catalog(self):
         catalog_menu_item = self.driver.find_element(By.XPATH, '//a[contains(text(), "Каталог")]')
         actions = ActionChains(self.driver)
         actions.move_to_element(catalog_menu_item).perform()
         time.sleep(3)
 
+    # Клик по подпункту меню "Подшипники"
     def click_podshipniki(self):
         podshipniki_submenu = self.driver.find_element(By.XPATH, '//a[contains(text(), "Подшипники")]')
         WebDriverWait(self.driver, 10).until(EC.visibility_of(podshipniki_submenu))
