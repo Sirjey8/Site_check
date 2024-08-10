@@ -1,14 +1,12 @@
 import time
 
-from selenium.webdriver.support.wait import WebDriverWait
-from selenium.webdriver.support import expected_conditions as EC
-
 from korpusnye_podshipniki_card import KorpusnyePodshipnikiCard
 from korpusnye_podshipniki_page import KorpusnyePodshipnikiPage
 from main_page import MainPage
 from podshipniki_page import PodshipnikiPage
 from podshipniki_skolgeniya_page import PodshipnikiSkolgeniyaPage
 from products_page import ProductsPage
+
 
 # тестирование загрузки главной страницы
 def test_main_page_load(browser):
@@ -66,6 +64,7 @@ def test_korpusnye_podshiphiki_paga_sort(browser):
     time.sleep(3)
     page.click_sort_alphabet_desc()
     time.sleep(3)
+    page.load_more_items()
     page.check_items_in_desc_order()
 
 # тестироваие карточки товара

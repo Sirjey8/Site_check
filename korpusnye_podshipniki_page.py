@@ -196,3 +196,11 @@ class KorpusnyePodshipnikiPage(BasePage):
         del_filter.click()
         time.sleep(3)
         assert '/product/podshipniki/korpusnye-podshipniki/filter/clear/apply/' in self.get_current_url()
+
+    def load_more_items(self):
+        for i in range(14):
+            more_text_ajax = self.driver.find_elements(By.CLASS_NAME, 'ajax_load_btn')[-1]
+            y_position = more_text_ajax.location['y'] - 50
+            self.driver.execute_script(f"window.scrollTo(0, {y_position})")
+            more_text_ajax.click()
+            time.sleep(3)
