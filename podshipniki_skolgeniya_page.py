@@ -43,7 +43,7 @@ class PodshipnikiSkolgeniyaPage(BasePage):
         # проверка плиточного отображения
         assert 'table' in ajax_load.get_attribute('class')
         view_list = self.driver.find_element(By.CLASS_NAME, 'view-list')
-        y = view_list.location['y']
+        y = view_list.location['y'] - 50
         self.driver.execute_script(f'window.scrollTo(0, {y})')
         view_list.click()
         time.sleep(3)

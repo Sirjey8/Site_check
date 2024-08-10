@@ -78,7 +78,7 @@ class KorpusnyePodshipnikiPage(BasePage):
     def test_open_first_card(self):
         titles_element = self.driver.find_element(By.XPATH, "//div[@class='title']//a[@class='dark-color']")
         # Находим положение по вертикали
-        y_position = titles_element.location['y']
+        y_position = titles_element.location['y'] - 50
         # Прокручиваем к ней
         self.driver.execute_script(f"window.scrollTo(0, {y_position})")
         # Получаем атрибут href
@@ -160,9 +160,10 @@ class KorpusnyePodshipnikiPage(BasePage):
         time.sleep(3)
         # для кажлдого элемента, с классом bx_filter_parameters_box_title внутри элемента с классом
         # smartfilter
-        for element in smartfilter.find_elements(By.CLASS_NAME, 'bx_filter_parameters_box_title'):
-            # кликаем по элементу
-            element.click()
+        for element in smartfilter.find_elements(By.CLASS_NAME, 'bx_filter_parameters_box'):
+            if 'active' not in element.get_attribute('class'):
+                # кликаем по элементу
+                element.click()
             # и ждём 1 секунду пока откроется
             time.sleep(1)
         time.sleep(1)
@@ -182,7 +183,7 @@ class KorpusnyePodshipnikiPage(BasePage):
         smartfilter.find_element(By.ID, 'set_filter').click()
         time.sleep(3)
         # После перезагрузки страницы, проверяем, что найдено 3 товара
-        elements = self.driver.find_elements(By.CLASS_NAME, 'img-responsive')
+        elements = self.driver.find_elements(By.CSS_SELECTOR, '.ajax_load img')
         assert len(elements) == 3
 
     # Проверка сброса фильтра
